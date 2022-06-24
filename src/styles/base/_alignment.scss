@@ -1,0 +1,76 @@
+//  ================================================
+//  Helper: alignment
+//  ================================================
+
+//  ------------------------------------------------
+//
+//  extends for alignment
+//
+//  Usage:
+//
+//  @extend %pull--left // element floats left
+//  @extend %pull--center // center element
+//  @extend %pull--right // element floats right
+//
+//  @extend %align--left // align left
+//  @extend %align--center // align center
+//  @extend %align--right // align right
+//
+//  ------------------------------------------------
+
+%pull-- {
+  &center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  &left {
+    display: inline;
+    float: left;
+  }
+
+  &right {
+    display: inline;
+    float: right;
+  }
+}
+
+%align-- {
+  &left {
+    text-align: left;
+  }
+
+  &right {
+    text-align: right;
+  }
+
+  &center {
+    text-align: center;
+  }
+}
+
+.align-- {
+  &left {
+    @extend %align--left;
+  }
+
+  &right {
+    @extend %align--right;
+  }
+
+  &center {
+    @extend %align--center;
+  }
+}
+
+.break {
+  clear: both;
+}
+
+// flex items overrides for align-item on flex container
+.align-self-- {
+  &stretch {
+    align-self: stretch;
+  }
+}

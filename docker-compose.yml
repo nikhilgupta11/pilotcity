@@ -1,0 +1,40 @@
+version: "3.8"
+services: 
+  program:
+    build: . #enable this when modifyingh dependencies
+    # image: juxsta/pcv4maxpro:latest
+    container_name: program
+    environment: 
+    - NODE_ENV=development
+    - CHOKIDAR_USEPOLLING=true
+    - MEMORY_LIMIT=2048
+    - MAX_THREADS=4
+    - COMPOSE_HTTP_TIMEOUT=1000
+    env_file:
+    - .env
+    volumes: 
+    - ./:/usr/src/app:cached
+    - /usr/src/app/node_modules
+    ports:
+    - 8080:8080
+    stdin_open: true
+    tty: true 
+    command: ["yarn","serve"]
+  storybook:
+    build: .
+    container_name: storybook
+    environment: 
+    - NODE_ENV=development
+    - CHOKIDAR_USEPOLLING=true
+    - MEMORY_LIMIT=2048
+    - MAX_THREADS=4
+    - COMPOSE_HTTP_TIMEOUT=200
+    env_file:
+    - .env
+    volumes: 
+    - ./:/usr/src/app:cached
+    ports:
+    - 6006:6006
+    stdin_open: true
+    tty: true
+    command: yarn storybook:serve
